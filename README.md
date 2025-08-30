@@ -350,7 +350,9 @@ classDiagram
 ### Indicaciones:
 
 1. **Explica** por qué se viola el principio LSP con ejemplos específicos
+ Un ejemplo específico para explicar el por qué se viola el principio LSP es el de productos y servicios. Si bien existe una clase Producto como Padre de las demás, esta tiene métodos que no son compatibles con diferentes subclases de Producto. Por ejemplo, el método calculateShippingCost() al ser parte de la clase Padre indica que todos sus hijos tendrán costo de envío, pero no siempre es así. Si bien pedimos un polo por e-commerce, claramente nos dará un costo de envío hacia domicilio, sin embargo todo cambia cuando se compra un servicio (como una llave de windows), este servicio no contiene ese costo de envío, por lo que si en algún momento queremos reemplazar un obj de servicio como un Producto de clase Padre, va a fallar porque no funcionaria el calculateShippingCost(). 
 2. **Identifica** los problemas de sustituibilidad en el código de prueba
+El problema de sustituibilidad aparece porque no todos los Product comparten las mismas capacidades: un PhysicalProduct necesita envío, un DigitalProduct descarga y un ServiceProduct servicio; si el código de prueba trata a todos solo como Product y luego intenta usar métodos específicos de envío, descarga o servicio, fallará, ya que esas operaciones no aplican a todos los productos.
 3. **Rediseña** la jerarquía de clases para que todas las subclases sean completamente sustituibles
 
 ### Diagrama de la Solución (Cumple sustituibilidad):
